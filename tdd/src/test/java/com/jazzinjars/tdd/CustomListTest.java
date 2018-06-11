@@ -7,6 +7,12 @@ import java.util.List;
 
 public class CustomListTest {
 
+	// ----- TDD
+	// 1st Step: create the test method for the functionality that you want to test
+	// 2nd Step: the test should fail
+	// 3rd Step: refactor the functionality to pass the test with minimum changes
+	// 4rd Step: iterate these steps
+
 	@Test
 	public void givenEmptyList_whenIsEmpty_thenTrueIsReturned() {
 		List<Object> list = new CustomList<>();

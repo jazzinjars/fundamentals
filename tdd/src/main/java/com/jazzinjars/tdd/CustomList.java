@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 public class CustomList<E> implements List<E> {
 
 	// The first implementation of the methods should return 0 or false to iterate over TDD cycles
+	// After that, refactor them to pass the tests
 
 	private Object[] internal = new Object[]{};
 
