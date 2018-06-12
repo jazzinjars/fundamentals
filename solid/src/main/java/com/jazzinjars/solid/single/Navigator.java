@@ -9,11 +9,11 @@ public class Navigator {
 	// An approach that does not break the single responsibility principle is:
 	// - create a class that will resolve the next position
 	// - and a class responsible for fixing the new position.
-	// ->
+	// -------->
 	public Position beforeSolidNavigate(Position position, Direction direction) {
 
-		Position nextPosition = resolve(position, direction);
-		Position fixedPosition = fix(nextPosition);
+		Position nextPosition = beforeSolidResolve(position, direction);
+		Position fixedPosition = beforeSolidFix(nextPosition);
 		return fixedPosition;
 	}
 
@@ -36,10 +36,16 @@ public class Navigator {
 	public Position beforeSolidFix(Position position) {
 		return new Position(position.getXAxis() < 0 ? 0 : position.getXAxis(), position.getYAxis() < 0 ? 0 : position.getYAxis());
 	}
+	// -------->
 
-	// ->
+	public Navigator(NextPositionResolver nextPositionResolver, PositionRepairer positionRepairer) {
+		this.nextPositionResolver = nextPositionResolver;
+		this.positionRepairer = positionRepairer;
+	}
 
-	public Positionnavi(NextPositionResolver nextPositionResolver, PositionRepairer positionRepairer) {
-		this
+	public Position navigate(Position position, Direction direction) {
+		Position nextPosition = nextPositionResolver.resolve(position, direction);
+		Position fixedPosition = positionRepairer.fix(nextPosition);
+		return fixedPosition;
 	}
 }
